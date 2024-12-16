@@ -1,0 +1,24 @@
+type Commande {
+    id: ID!
+    dateCommande: String!
+    montantTotal: Float!
+    client: Client
+}
+
+type Client {
+    id: ID!
+    nom: String!
+    commandes: [Commande]
+}
+
+type Query {
+    commandes: [Commande]
+    commandeById(id: ID!): Commande
+    clients: [Client]
+}
+
+type Mutation {
+    addCommande(dateCommande: String!, montantTotal: Float!, clientId: ID!): Commande
+    updateCommande(id: ID!, dateCommande: String, montantTotal: Float): Commande
+    deleteCommande(id: ID!): Boolean
+}
